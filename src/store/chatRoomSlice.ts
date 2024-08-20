@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { chatRoomTypes } from "../types/storeTypes";
 
-const initialState: chatRoomTypes = {
+const initialState: { currentChatRoom: chatRoomTypes } = {
   currentChatRoom: {
     createBy: {
-      image: "",
       name: "",
     },
     description: "",

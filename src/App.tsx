@@ -1,6 +1,7 @@
-import React from "react";
-import "./App.css";
-import { Outlet, Route, Routes } from "react-router-dom";
+import React, { useEffect } from "react";
+import * as S from "./Styles";
+
+import { Outlet, Route, Routes, useNavigate } from "react-router-dom";
 import MainPage from "./pages/MainPage/MainPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
@@ -13,18 +14,56 @@ import DetailDiaryPage from "./pages/DiaryPage/DetailDiaryPage/DetailDiaryPage";
 import WritePage from "./pages/WritePage/WritePage";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import app from "./firebase";
+import { useDispatch } from "react-redux";
+import { clearUser, setUser } from "./store/userSlice";
+import { AppDispatch } from "./store";
 
 const DefaultSetting = () => {
   return (
-    <>
-      <Nav />
-      <Outlet />
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <S.Wrapper>
+        <Nav />
+        <Outlet />
+      </S.Wrapper>
       <Footer />
-    </>
+    </div>
   );
 };
 
 function App() {
+  const auth = getAuth(app);
+  const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        navigate("/");
+        const userData = {
+          uid: user.uid,
+          displayName: user.displayName,
+        };
+        dispatch(setUser(userData));
+      } else {
+        navigate("/login");
+        dispatch(clearUser());
+      }
+
+      return () => {
+        unsubscribe();
+      };
+    });
+  }, []);
+
   return (
     <Routes>
       <Route path="/" element={<DefaultSetting />}>
