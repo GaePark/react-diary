@@ -19,6 +19,10 @@ import app from "./firebase";
 import { useDispatch } from "react-redux";
 import { clearUser, setUser } from "./store/userSlice";
 import { AppDispatch } from "./store";
+import WritePostPage from "./pages/PostPage/WritePostPage/WritePostPage";
+import WriteDiaryPage from "./pages/DiaryPage/WriteDiaryPage/WriteDiaryPage";
+import EditPostPage from "./pages/PostPage/EditPostPage/EditPostPage";
+import EditDiaryPage from "./pages/DiaryPage/EditDiaryPage/EditDiaryPage";
 
 const DefaultSetting = () => {
   return (
@@ -73,9 +77,13 @@ function App() {
         <Route path="/news/:newsId" element={<DetailNewsPage />} />
 
         <Route path="/post" element={<PostPage />} />
+        <Route path="/post/write" element={<WritePostPage />} />
+        <Route path="/post/edit" element={<EditPostPage />} />
         <Route path="/post/:postId" element={<DetailDiaryPage />} />
 
         <Route path="/diary" element={<DiaryPage />} />
+        <Route path="/diary/write" element={<WriteDiaryPage />} />
+        <Route path="/diary/edit" element={<EditDiaryPage />} />
         <Route path="/diary/:diaryId" element={<DetailDiaryPage />} />
 
         <Route path="/calendal" element={<CalendalPage />} />

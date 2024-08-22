@@ -2,6 +2,7 @@
   "name": "react-dairy",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://gaepark.github.io/react-diary",
   "dependencies": {
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
@@ -17,6 +18,7 @@
     "axios": "^1.7.3",
     "bootstrap": "^5.3.3",
     "firebase": "^10.12.5",
+    "gh-pages": "^6.1.1",
     "md5": "^2.3.0",
     "moment": "^2.30.1",
     "react": "^18.3.1",
@@ -32,6 +34,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

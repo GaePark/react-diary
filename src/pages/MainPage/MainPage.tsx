@@ -11,17 +11,16 @@ const MainPage = () => {
             style={{
               width: "100%",
               height: "50%",
-              backgroundColor: "red",
               padding: "5px",
             }}
           ></div>
         </S.Wrap>
         <S.Wrap>
-          <S.Title>DIARY</S.Title>
+          <S.Title>NEWS</S.Title>
         </S.Wrap>
       </S.Fcontain>
       <S.NewsWrap>
-        <S.Title>NEWS</S.Title>
+        <S.Title>DIARY</S.Title>
       </S.NewsWrap>
     </S.Wrapper>
   );
