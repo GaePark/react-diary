@@ -1,7 +1,8 @@
 import React from "react";
+import { PageWrapper } from "../../Styles";
 
 const CalendalPage = () => {
-  return <div>CalendalPage</div>;
+  return <PageWrapper>CalendalPage</PageWrapper>;
 };
 
 export default CalendalPage;

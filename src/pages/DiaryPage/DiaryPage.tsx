@@ -1,7 +1,8 @@
 import React from "react";
+import { PageWrapper } from "../../Styles";
 
 const DiaryPage = () => {
-  return <div>DiaryPage</div>;
+  return <PageWrapper>DiaryPage</PageWrapper>;
 };
 
 export default DiaryPage;

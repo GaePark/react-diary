@@ -8,3 +8,8 @@ export const Wrapper = styled.div`
     padding: 0 30px;
   }
 `;
+
+export const PageWrapper = styled.div`
+  width: 100%;
+  min-height: 80vh;
+`;

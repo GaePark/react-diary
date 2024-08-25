@@ -18,6 +18,8 @@ interface FormTypes {
 }
 
 const RegisterPage = () => {
+  window.history.forward();
+
   const auth = getAuth(app);
 
   const [loading, setLoading] = useState<boolean>(false);

@@ -1,7 +1,8 @@
 import React from "react";
+import { PageWrapper } from "../../Styles";
 
 const NewsPage = () => {
-  return <div>NewsPage</div>;
+  return <PageWrapper>NewsPage</PageWrapper>;
 };
 
 export default NewsPage;

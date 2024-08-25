@@ -1,7 +1,13 @@
 import React, { useEffect } from "react";
 import * as S from "./Styles";
 
-import { Outlet, Route, Routes, useNavigate } from "react-router-dom";
+import {
+  Outlet,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import MainPage from "./pages/MainPage/MainPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
@@ -23,6 +29,7 @@ import WritePostPage from "./pages/PostPage/WritePostPage/WritePostPage";
 import WriteDiaryPage from "./pages/DiaryPage/WriteDiaryPage/WriteDiaryPage";
 import EditPostPage from "./pages/PostPage/EditPostPage/EditPostPage";
 import EditDiaryPage from "./pages/DiaryPage/EditDiaryPage/EditDiaryPage";
+import DetailPostPage from "./pages/PostPage/DetailPostPage/DetailPostPage";
 
 const DefaultSetting = () => {
   return (
@@ -47,25 +54,37 @@ function App() {
   const auth = getAuth(app);
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+  const location = useLocation();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        navigate("/");
-        const userData = {
-          uid: user.uid,
-          displayName: user.displayName,
-        };
-        dispatch(setUser(userData));
+        if (
+          location.pathname === "/login" ||
+          location.pathname === "/register"
+        ) {
+          navigate("/");
+          const userData = {
+            uid: user.uid,
+            displayName: user.displayName,
+          };
+          dispatch(setUser(userData));
+        }
       } else {
         navigate("/login");
         dispatch(clearUser());
+        if (
+          location.pathname !== "/login" &&
+          location.pathname !== "/register"
+        ) {
+          window.location.reload();
+        }
       }
-
-      return () => {
-        unsubscribe();
-      };
     });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   return (
@@ -79,7 +98,7 @@ function App() {
         <Route path="/post" element={<PostPage />} />
         <Route path="/post/write" element={<WritePostPage />} />
         <Route path="/post/edit" element={<EditPostPage />} />
-        <Route path="/post/:postId" element={<DetailDiaryPage />} />
+        <Route path="/post/:postId" element={<DetailPostPage />} />
 
         <Route path="/diary" element={<DiaryPage />} />
         <Route path="/diary/write" element={<WriteDiaryPage />} />

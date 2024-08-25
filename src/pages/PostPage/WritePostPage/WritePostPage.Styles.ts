@@ -1,10 +1,5 @@
 import styled from "@emotion/styled";
 
-export const Wrapper = styled.div`
-  width: 100%;
-  min-height: 80vh;
-`;
-
 export const Theme = styled.h1`
   font-size: 3rem;
   color: #62eb6a;
@@ -27,13 +22,16 @@ export const Title = styled.input`
   border-radius: 12px;
 `;
 
-export const Content = styled.input`
+export const Content = styled.textarea`
   width: 100%;
   height: 600px;
   font-size: 1rem;
   line-height: 40px;
   border: 1px solid #d3d3d3;
+  font-family: "Noto Sans KR";
   border-radius: 12px;
+  padding: 0 5px;
+  resize: none;
 `;
 
 export const Submit = styled.button`

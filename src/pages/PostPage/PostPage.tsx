@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as S from "./PostPage.Styles";
 import { Link } from "react-router-dom";
+import { PageWrapper } from "../../Styles";
 
 const PostPage = () => {
+  useEffect(() => {}, []);
   return (
-    <S.Wrapper>
+    <PageWrapper>
       <S.Theme>POST</S.Theme>
       <div style={{ textAlign: "right" }}>
         <Link style={{ textDecoration: "none" }} to={"/post/write"}>
@@ -26,7 +28,7 @@ const PostPage = () => {
           <td>작성일</td>
         </tr>
       </table>
-    </S.Wrapper>
+    </PageWrapper>
   );
 };
 

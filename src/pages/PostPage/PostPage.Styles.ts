@@ -1,10 +1,5 @@
 import styled from "@emotion/styled";
 
-export const Wrapper = styled.div`
-  width: 100%;
-  min-height: 80vh;
-`;
-
 export const Theme = styled.h1`
   font-size: 3rem;
   color: #62eb6a;
