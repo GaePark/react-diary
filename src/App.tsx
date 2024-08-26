@@ -73,12 +73,6 @@ function App() {
       } else {
         navigate("/login");
         dispatch(clearUser());
-        if (
-          location.pathname !== "/login" &&
-          location.pathname !== "/register"
-        ) {
-          window.location.reload();
-        }
       }
     });
 
