@@ -20,6 +20,7 @@ export const Title = styled.input`
   line-height: 40px;
   border: 1px solid #d3d3d3;
   border-radius: 12px;
+  padding: 0 5px;
 `;
 
 export const Content = styled.textarea`
@@ -34,7 +35,7 @@ export const Content = styled.textarea`
   resize: none;
 `;
 
-export const Submit = styled.button`
+export const Submit = styled.input`
   width: 200px;
   height: 50px;
   font-size: 1.5rem;
@@ -46,4 +47,10 @@ export const Submit = styled.button`
   margin-top: 10px;
   margin-bottom: 30px;
   cursor: pointer;
+`;
+
+export const errorTag = styled.p`
+  font-size: 0.75rem;
+  color: red;
+  margin-left: 10px;
 `;

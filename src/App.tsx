@@ -64,12 +64,12 @@ function App() {
           location.pathname === "/register"
         ) {
           navigate("/");
-          const userData = {
-            uid: user.uid,
-            displayName: user.displayName,
-          };
-          dispatch(setUser(userData));
         }
+        const userData = {
+          uid: user.uid,
+          displayName: user.displayName,
+        };
+        dispatch(setUser(userData));
       } else {
         navigate("/login");
         dispatch(clearUser());
