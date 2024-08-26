@@ -11,6 +11,7 @@ interface FormTypes {
 }
 
 const LoginPage = () => {
+  window.history.forward();
   const auth = getAuth(app);
   const [loading, setLoading] = useState<boolean>(false);
   const [errorFromSubmit, setErrorFromSubmit] = useState<string>("");
