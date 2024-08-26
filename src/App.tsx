@@ -60,6 +60,7 @@ function App() {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         if (
+          location.pathname === "/" ||
           location.pathname === "/login" ||
           location.pathname === "/register"
         ) {
