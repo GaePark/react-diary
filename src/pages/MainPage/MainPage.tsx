@@ -2,13 +2,15 @@ import React, { useEffect } from "react";
 import * as S from "./MainPage.Styles";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { PageWrapper } from "../../Styles";
+import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
   const auth = getAuth();
+  const navigate = useNavigate();
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
-        window.history.forward();
+        navigate("/login");
       }
 
       return () => {
