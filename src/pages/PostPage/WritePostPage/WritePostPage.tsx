@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import * as S from "./WritePostPage.Styles";
-import { child, get, push, ref, set } from "firebase/database";
+import { push, ref, set } from "firebase/database";
 import { db } from "../../../firebase";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../store";
-import { nowDate } from "../../../api/Date";
-import { setPostsCount } from "../../../store/postsCountSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
+import { timeStamp } from "../../../api/Date";
 import { useNavigate } from "react-router-dom";
 import { PageWrapper } from "../../../Styles";
 import { useForm } from "react-hook-form";
@@ -18,7 +17,6 @@ interface FormTypes {
 const WritePostPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
-  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const { currentUser } = useSelector((state: RootState) => state.user);
@@ -32,29 +30,8 @@ const WritePostPage = () => {
   const onClickSubmit = async (data: FormTypes): Promise<void> => {
     try {
       setLoading(true);
-      const dbRef = ref(db);
-      let postsNum: number = 0;
-      console.log(data.content, data.title);
-
       const postsRef = ref(db, "posts");
-      const postsCountRef = ref(db, "postsCount");
       const newPostRef = push(postsRef);
-      const date = nowDate;
-
-      await get(child(dbRef, "postsCount/num"))
-        .then((snapShot) => {
-          if (snapShot.exists()) {
-            postsNum = snapShot.val();
-            postsNum++;
-          } else {
-            console.log("No data available");
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-
-      dispatch(setPostsCount(postsNum + 1));
 
       await set(newPostRef, {
         number: newPostRef.key,
@@ -62,12 +39,9 @@ const WritePostPage = () => {
         writer: currentUser.displayName,
         uid: currentUser.uid,
         content: data.content,
-        today: date,
+        today: timeStamp,
       });
 
-      await set(postsCountRef, {
-        num: postsNum,
-      });
       setLoading(false);
 
       navigate(`/post/${newPostRef.key}`);

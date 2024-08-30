@@ -10,6 +10,9 @@ export const Wrapper = styled.div`
   @media (max-width: 1200px) {
     font-size: 14px;
   }
+  @media (max-width: 600px) {
+    font-size: 12px;
+  }
 `;
 
 export const Content = styled.div`

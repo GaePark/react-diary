@@ -26,10 +26,10 @@ import { useDispatch } from "react-redux";
 import { clearUser, setUser } from "./store/userSlice";
 import { AppDispatch } from "./store";
 import WritePostPage from "./pages/PostPage/WritePostPage/WritePostPage";
-import WriteDiaryPage from "./pages/DiaryPage/WriteDiaryPage/WriteDiaryPage";
 import EditPostPage from "./pages/PostPage/EditPostPage/EditPostPage";
 import EditDiaryPage from "./pages/DiaryPage/EditDiaryPage/EditDiaryPage";
 import DetailPostPage from "./pages/PostPage/DetailPostPage/DetailPostPage";
+import WriteDiaryPage from "./pages/DiaryPage/WriteDiaryPage/WriteDiaryPage";
 
 const DefaultSetting = () => {
   return (

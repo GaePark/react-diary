@@ -1,13 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./userSlice";
 import chatRoomReducer from "./chatRoomSlice";
-import postsCountReducer from "./postsCountSlice";
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     chatRoom: chatRoomReducer,
-    postsCount: postsCountReducer,
   },
 });
 

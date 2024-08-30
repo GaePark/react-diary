@@ -4,12 +4,13 @@ import * as S from "./DetailPostPage.Styles";
 import { child, get, ref } from "firebase/database";
 import { db } from "../../../firebase";
 import { useLocation } from "react-router-dom";
+import { reDate } from "../../../api/Date";
 
 interface postDataTypes {
   content: string;
   number: string;
   title: string;
-  today: string;
+  today: number;
   uid: string;
   writer: string;
 }
@@ -50,7 +51,7 @@ const DetailPostPage = () => {
             >
               작성자:<S.HeaderWriter>{postData.writer}</S.HeaderWriter>
             </p>
-            <S.HeaderTime>{postData.today}</S.HeaderTime>
+            <S.HeaderTime>{reDate(postData.today)}</S.HeaderTime>
           </S.Header>
           <S.Content>{postData.content}</S.Content>
         </>
