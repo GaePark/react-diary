@@ -70,7 +70,6 @@ function App() {
           uid: user.uid,
           displayName: user.displayName,
         };
-        console.log(location.pathname);
         dispatch(setUser(userData));
       } else {
         navigate("/login");

@@ -9,7 +9,9 @@ export const Fcontain = styled.div`
 export const Wrap = styled.div`
   width: 100%;
   aspect-ratio: 1 / 1;
-  text-align: center;
+  > div div {
+    text-align: center;
+  }
 `;
 
 export const NewsWrap = styled.div`

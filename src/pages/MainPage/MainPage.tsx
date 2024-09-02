@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./MainPage.Styles";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { PageWrapper } from "../../Styles";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -19,23 +18,10 @@ interface DataTypes {
 }
 
 const MainPage = () => {
-  const auth = getAuth();
   const navigate = useNavigate();
   const { currentUser } = useSelector((state: RootState) => state.user);
   const [postData, setPostData] = useState<DataTypes[] | null>(null);
   const [diaryData, setDiaryData] = useState<DataTypes[] | null>(null);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        navigate("/login");
-      }
-
-      return () => {
-        unsubscribe();
-      };
-    });
-  }, []);
 
   useEffect(() => {
     try {
@@ -44,6 +30,7 @@ const MainPage = () => {
       ).then((snapshot) => {
         if (snapshot.exists()) {
           setDiaryData(snapshot.val());
+          console.log(snapshot.val());
         } else {
           console.log("데이터가 없습니다.");
         }
