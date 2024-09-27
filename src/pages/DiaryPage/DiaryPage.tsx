@@ -49,7 +49,6 @@ const DiaryPage = () => {
             setLastVisibleKey(keys[0]);
             setFirstVisibleKey(keys[keys.length - 1]);
           }
-          console.log(snapshot.val());
         } else {
           console.log("데이터가 없습니다.");
         }
@@ -72,8 +71,6 @@ const DiaryPage = () => {
         if (snapshot.exists()) {
           const data = snapshot.val();
           const keys = Object.keys(data);
-          console.log(snapshot.val());
-          console.log(keys[keys.length - 1]);
 
           setDiaryData(snapshot.val());
           if (keys.length > 0) {
@@ -102,8 +99,6 @@ const DiaryPage = () => {
         if (snapshot.exists()) {
           const data = snapshot.val();
           const keys = Object.keys(data);
-          console.log(data);
-          console.log(firstVisibleKey);
 
           setDiaryData(snapshot.val());
           if (keys.length > 0) {
@@ -136,12 +131,13 @@ const DiaryPage = () => {
       >
         <div
           style={{
-            backgroundColor: "#B1EBB5",
+            backgroundColor: "#f7f7f7",
             height: "50px",
             width: "100%",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            fontWeight: "bold",
           }}
         >
           <div style={{ width: "70%" }}>제목</div>
@@ -159,26 +155,23 @@ const DiaryPage = () => {
             Object.entries(diaryData)
               .reverse()
               .map(([key, value]) => (
-                <div
-                  key={key}
-                  style={{
-                    borderBottom: "1px solid #ccc",
-                    width: "100%",
-                    height: "50px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
+                <S.Post key={key}>
                   <div
                     onClick={(): void => navigate(`/diary/${value.number}`)}
-                    style={{ cursor: "pointer", width: "70%" }}
+                    style={{
+                      cursor: "pointer",
+                      width: "70%",
+                      textAlign: "left",
+                      paddingLeft: "20px",
+                      height: "100%",
+                      lineHeight: "50px",
+                    }}
                   >
                     {value.title}
                   </div>
                   <div style={{ width: "15%" }}>{value.writer}</div>
                   <div style={{ width: "15%" }}>{reDate(value.today)}</div>
-                </div>
+                </S.Post>
               ))}
         </div>
       </div>

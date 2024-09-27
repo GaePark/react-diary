@@ -13,7 +13,6 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import NewsPage from "./pages/NewsPage/NewsPage";
 import PostPage from "./pages/PostPage/PostPage";
-import CalendalPage from "./pages/CalendalPage/CalendalPage";
 import DiaryPage from "./pages/DiaryPage/DiaryPage";
 import DetailNewsPage from "./pages/NewsPage/DetailNewsPage/DetailNewsPage";
 import DetailDiaryPage from "./pages/DiaryPage/DetailDiaryPage/DetailDiaryPage";
@@ -66,11 +65,13 @@ function App() {
         ) {
           navigate("/");
         }
-        const userData = {
-          uid: user.uid,
-          displayName: user.displayName,
-        };
-        dispatch(setUser(userData));
+
+        dispatch(
+          setUser({
+            uid: user.uid,
+            displayName: user.displayName,
+          })
+        );
       } else {
         navigate("/login");
         dispatch(clearUser());
@@ -99,8 +100,6 @@ function App() {
         <Route path="/diary/write" element={<WriteDiaryPage />} />
         <Route path="/diary/edit" element={<EditDiaryPage />} />
         <Route path="/diary/:diaryId" element={<DetailDiaryPage />} />
-
-        <Route path="/calendal" element={<CalendalPage />} />
 
         <Route path="/write" element={<WritePage />} />
       </Route>

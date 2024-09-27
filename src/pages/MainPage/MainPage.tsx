@@ -30,7 +30,6 @@ const MainPage = () => {
       ).then((snapshot) => {
         if (snapshot.exists()) {
           setDiaryData(snapshot.val());
-          console.log(snapshot.val());
         } else {
           console.log("데이터가 없습니다.");
         }
@@ -58,12 +57,13 @@ const MainPage = () => {
               <S.Title>POST</S.Title>
               <div
                 style={{
-                  backgroundColor: "#B1EBB5",
+                  backgroundColor: "#f7f7f7",
                   height: "50px",
                   width: "100%",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
+                  fontWeight: "bold",
                 }}
               >
                 <div style={{ width: "70%" }}>제목</div>
@@ -86,7 +86,12 @@ const MainPage = () => {
                     >
                       <div
                         onClick={(): void => navigate(`/post/${value.number}`)}
-                        style={{ cursor: "pointer", width: "70%" }}
+                        style={{
+                          cursor: "pointer",
+                          width: "70%",
+                          textAlign: "left",
+                          paddingLeft: "10px",
+                        }}
                       >
                         {value.title}
                       </div>
@@ -98,9 +103,10 @@ const MainPage = () => {
               <div
                 style={{
                   color: "#d6d6d6",
-                  textAlign: "right",
                   cursor: "pointer",
-                  marginTop: "5px",
+                  position: "absolute",
+                  right: "10px",
+                  bottom: "10px",
                 }}
                 onClick={() => navigate("/post")}
               >
@@ -111,12 +117,13 @@ const MainPage = () => {
               <S.Title>DIARY</S.Title>
               <div
                 style={{
-                  backgroundColor: "#B1EBB5",
+                  backgroundColor: "#f7f7f7",
                   height: "50px",
                   width: "100%",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
+                  fontWeight: "bold",
                 }}
               >
                 <div style={{ width: "70%" }}>제목</div>
@@ -139,7 +146,12 @@ const MainPage = () => {
                     >
                       <div
                         onClick={(): void => navigate(`/diary/${value.number}`)}
-                        style={{ cursor: "pointer", width: "70%" }}
+                        style={{
+                          cursor: "pointer",
+                          width: "70%",
+                          textAlign: "left",
+                          paddingLeft: "10px",
+                        }}
                       >
                         {value.title}
                       </div>
@@ -151,9 +163,10 @@ const MainPage = () => {
               <div
                 style={{
                   color: "#d6d6d6",
-                  textAlign: "right",
                   cursor: "pointer",
-                  marginTop: "5px",
+                  position: "absolute",
+                  right: "10px",
+                  bottom: "10px",
                 }}
                 onClick={() => navigate("/diary")}
               >
@@ -161,9 +174,6 @@ const MainPage = () => {
               </div>
             </S.Wrap>
           </S.Fcontain>
-          <S.NewsWrap>
-            <S.Title>NEWS</S.Title>
-          </S.NewsWrap>
         </>
       ) : (
         <div>Loading...</div>

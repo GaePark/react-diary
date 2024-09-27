@@ -21,7 +21,7 @@ export const WriteBtn = styled.button`
 `;
 
 export const PageBtn = styled.button`
-  background-color: #90eb63;
+  background-color: #ccc;
   color: #fff;
   border: none;
   width: 100px;
@@ -32,5 +32,19 @@ export const PageBtn = styled.button`
   transition: 0.5s;
   :hover {
     background-color: #63eb9a;
+  }
+`;
+
+export const Post = styled.div`
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+
+  :hover {
+    background-color: #ebffed;
   }
 `;

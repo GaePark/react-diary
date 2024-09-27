@@ -12,7 +12,6 @@ const Nav = () => {
     { title: "홈", key: "/" },
     { title: "게시판", key: "/post" },
     { title: "뉴스", key: "/news" },
-    { title: "달력", key: "/calendal" },
     { title: "일기장", key: "/diary" },
   ];
 
