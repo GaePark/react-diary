@@ -13,6 +13,7 @@ interface dataTypes {
 }
 
 const NewsPage = () => {
+  axios.defaults.withCredentials = true;
   const [data, setData] = useState<dataTypes[] | null>();
   const [showData, setShowData] = useState<dataTypes[] | null>();
   const [page, setPage] = useState<number>(1);
@@ -26,6 +27,7 @@ const NewsPage = () => {
     const options = {
       // 요청헤더 설정
       headers: {
+        "Access-Control-Allow-Origin": "*",
         "X-Naver-Client-Id": process.env.REACT_APP_NAVER_ID,
         "X-Naver-Client-Secret": process.env.REACT_APP_NAVER_SECRET,
       },
@@ -36,10 +38,10 @@ const NewsPage = () => {
       },
     };
 
-    const response = await axios.get(api_url, options);
-
-    setData(response.data.items);
-    setShowData(response.data.items.slice(0, 10));
+    await axios.get(api_url, options).then((result) => {
+      setData(result.data.item);
+      setShowData(result.data.items.slice(0, 10));
+    });
   };
 
   const onChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
