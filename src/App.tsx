@@ -14,7 +14,6 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import NewsPage from "./pages/NewsPage/NewsPage";
 import PostPage from "./pages/PostPage/PostPage";
 import DiaryPage from "./pages/DiaryPage/DiaryPage";
-import DetailNewsPage from "./pages/NewsPage/DetailNewsPage/DetailNewsPage";
 import DetailDiaryPage from "./pages/DiaryPage/DetailDiaryPage/DetailDiaryPage";
 import WritePage from "./pages/WritePage/WritePage";
 import Nav from "./components/Nav";
@@ -89,7 +88,6 @@ function App() {
         <Route index element={<MainPage />} />
 
         <Route path="/news" element={<NewsPage />} />
-        <Route path="/news/:newsId" element={<DetailNewsPage />} />
 
         <Route path="/post" element={<PostPage />} />
         <Route path="/post/write" element={<WritePostPage />} />

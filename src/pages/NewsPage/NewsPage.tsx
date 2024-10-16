@@ -13,35 +13,25 @@ interface dataTypes {
 }
 
 const NewsPage = () => {
-  axios.defaults.withCredentials = true;
   const [data, setData] = useState<dataTypes[] | null>();
   const [showData, setShowData] = useState<dataTypes[] | null>();
   const [page, setPage] = useState<number>(1);
   const [keyword, setKeyword] = useState<string>("");
 
-  const api_url = "/v1/search/news.json"; // JSON 결과
-
-  const getSerchDate = async (e: React.FormEvent<HTMLFormElement>) => {
+  const getSearchDate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!keyword) return;
-    const options = {
-      // 요청헤더 설정
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "X-Naver-Client-Id": process.env.REACT_APP_NAVER_ID,
-        "X-Naver-Client-Secret": process.env.REACT_APP_NAVER_SECRET,
-      },
-      // 파라미터 설정
-      params: {
-        query: keyword,
-        display: 50,
-      },
-    };
+    const response = await axios.get(
+      "https://port-0-node-naverapi-news-m2bnkmf93849a0d5.sel4.cloudtype.app",
+      {
+        params: {
+          query: keyword,
+        },
+      }
+    );
 
-    await axios.get(api_url, options).then((result) => {
-      setData(result.data.item);
-      setShowData(result.data.items.slice(0, 10));
-    });
+    setData(response.data.items);
+    setShowData(response.data.items.slice(0, 10));
   };
 
   const onChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,7 +51,7 @@ const NewsPage = () => {
   return (
     <PageWrapper>
       <S.Theme>NEWS</S.Theme>
-      <S.Form onSubmit={getSerchDate}>
+      <S.Form onSubmit={getSearchDate}>
         <S.Search
           type="text"
           placeholder="Search"
